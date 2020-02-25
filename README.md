@@ -4,7 +4,7 @@ Code for our paper [Self-Supervised Poisson-Gaussian Denoising](http://arxiv.org
 
 Wesley Khademi, Sonia Rao, Clare Minnerath, Guy Hagen and [Jonathan Ventura](https://jonathanventura.github.io).  [Self-Supervised Poisson-Gaussian Denoising](http://arxiv.org/abs/2002.09558).  arXiv:2002.09558 [eess.IV]
 
-
+The code is set up to train and test on the [Fluorescence Microscopy Dataset](http://github.com/bmmi/denoising-fluorescence) but could be easily adapted to other data.
 
 ### Abstract
 
