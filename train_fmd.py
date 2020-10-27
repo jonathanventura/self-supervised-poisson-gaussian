@@ -1,7 +1,6 @@
 """ Train network on the Fluorescence Microscopy Dataset (FMD) """ 
 
 import numpy as np
-import skimage
 from nets import *
 
 import os
@@ -13,18 +12,13 @@ from tqdm import trange
 
 import argparse
 
-import keras
-from keras import backend as K
+from tensorflow.keras.optimizers import Adam, SGD
+from tensorflow.keras.callbacks import LambdaCallback, ModelCheckpoint, ReduceLROnPlateau
+
 import tensorflow as tf
 
 np.random.seed(1234)
-tf.set_random_seed(1234)
-
-config = tf.ConfigProto()
-config.gpu_options.allow_growth=True
-sess = tf.Session(config=config)
-K.set_session(sess)
-
+tf.random.set_seed(1234)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--path',required=True,help='path to dataset root')
@@ -86,9 +80,6 @@ def random_crop_generator(data, crop_size, batch_size):
             batch[i] = data[ind,y[i]:y[i]+crop_size,x[i]:x[i]+crop_size]
         yield batch, None
 
-from keras.optimizers import Adam, SGD
-from keras.callbacks import LambdaCallback, ModelCheckpoint, ReduceLROnPlateau
-
 model = gaussian_blindspot_network((args.crop, args.crop, 1),args.mode,args.reg)
 
 model.compile(optimizer=Adam(args.lr))
@@ -113,10 +104,10 @@ for y in range(0,X_val.shape[1],args.crop):
         val_crops.append(X_val[:,y:y+args.crop,x:x+args.crop])
 val_data = np.concatenate(val_crops,axis=0)
 
-history = model.fit_generator(gen,
-                              steps_per_epoch=args.steps,
-                              validation_data=(val_data,None),
-                              epochs=args.epoch, 
-                              verbose=1,
-                              callbacks=callbacks)
+history = model.fit(x=gen, y=None,
+                    steps_per_epoch=args.steps,
+                    validation_data=(val_data,None),
+                    epochs=args.epoch,
+                    verbose=1,
+                    callbacks=callbacks)
 

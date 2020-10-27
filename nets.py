@@ -1,12 +1,10 @@
 import numpy as np
-from keras import Input
-from keras.models import Model
-from keras.layers import Input, Lambda, Conv2D, LeakyReLU, UpSampling2D, MaxPooling2D, ZeroPadding2D, Cropping2D, Concatenate, Reshape, GlobalAveragePooling2D, BatchNormalization, Add, Subtract
-from keras.initializers import Constant
-import keras.backend as K
+from tensorflow.keras import Input
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Input, Lambda, Conv2D, LeakyReLU, UpSampling2D, MaxPooling2D, ZeroPadding2D, Cropping2D, Concatenate, Reshape, GlobalAveragePooling2D, BatchNormalization, Add, Subtract, Layer
+from tensorflow.keras.initializers import Constant
+import tensorflow.keras.backend as K
 import tensorflow as tf
-
-from keras.layers import Layer
 
 class GaussianLayer(Layer):
     """ Computes noise std. dev. for Gaussian noise model. """
@@ -96,7 +94,7 @@ def uncalib_gaussian_loss(y,loc,std):
     """
     var = std**2
     total_var = var+1e-3
-    loss = (y-loc)**2 / total_var + tf.log(total_var)
+    loss = (y-loc)**2 / total_var + K.log(total_var)
     return K.mean(loss)
 
 def gaussian_loss(y,loc,std,noise_std,reg_weight):
@@ -112,7 +110,7 @@ def gaussian_loss(y,loc,std,noise_std,reg_weight):
     var = std**2
     noise_var = noise_std**2
     total_var = var+noise_var
-    loss = (y-loc)**2 / total_var + tf.log(total_var)
+    loss = (y-loc)**2 / total_var + K.log(total_var)
     reg = reg_weight * K.abs(std)
     return K.mean(loss+reg)
 
