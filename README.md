@@ -1,6 +1,6 @@
 # Self-Supervised Poisson-Gaussian Denoising
 
-![Confocal FISH Example](images/Confocal_FISH.png)
+![Confocal FISH Example](images/Confocal_FISH.jpg)
 
 Code for our paper [Self-Supervised Poisson-Gaussian Denoising](http://arxiv.org/abs/2002.09558), to appear at WACV 2021.
 
