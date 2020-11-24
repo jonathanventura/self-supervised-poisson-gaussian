@@ -1,5 +1,7 @@
 # Self-Supervised Poisson-Gaussian Denoising
 
+![Confocal FISH Example](images/Confocal_FISH.png)
+
 Code for our paper [Self-Supervised Poisson-Gaussian Denoising](http://arxiv.org/abs/2002.09558), to appear at WACV 2021.
 
 Wesley Khademi, Sonia Rao, Clare Minnerath, Guy Hagen and [Jonathan Ventura](https://jonathanventura.github.io).  [Self-Supervised Poisson-Gaussian Denoising](http://arxiv.org/abs/2002.09558).  IEEE Winter Conference on Applications of Computer Vision (WACV) 2021 (to appear).
