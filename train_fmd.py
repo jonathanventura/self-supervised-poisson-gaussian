@@ -18,7 +18,7 @@ from tensorflow.keras.callbacks import LambdaCallback, ModelCheckpoint, ReduceLR
 import tensorflow as tf
 
 np.random.seed(1234)
-tf.random.set_seed(1234)
+tf.set_random_seed(1234)
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--path',required=True,help='path to dataset root')

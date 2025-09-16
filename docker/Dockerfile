@@ -1,4 +1,3 @@
-FROM tensorflow/tensorflow:2.3.1-gpu
-RUN apt-get update ; apt-get install vim git wget -y
-RUN pip install --upgrade imageio tqdm scikit-image
+FROM tensorflow/tensorflow:1.15.5-gpu
+RUN pip install scikit-image tqdm keras opencv-python-headless csbdeep
 

@@ -15,7 +15,7 @@ We extend the blindspot model for self-supervised denoising to handle Poisson-Ga
 # Dependencies
 
 * Python 3
-* Tensorflow
+* Tensorflow 1.15
 * scikit-image
 * tqdm
 
